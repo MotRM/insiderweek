@@ -14,4 +14,3 @@ dramatiq.set_broker(redis_broker)
 def upload_datafile_in_db(filepath: str, user_id: int):
     data = csv_reader(filepath)
     upload_data_file_db(data, user_id)
-

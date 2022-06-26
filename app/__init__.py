@@ -1,29 +1,30 @@
 # init.py
 
 import os
-from database import db_dir
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from app.uploads import upload_dir
 
+from flask import Flask
+from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+
+from app.uploads import upload_dir
+from database import db_dir
 
 db = SQLAlchemy()
 UPLOAD_FOLDER = upload_dir
-ALLOWED_EXTENSIONS = {'CSV', 'jpg'}
+ALLOWED_EXTENSIONS = {"CSV", "jpg"}
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(db_dir, 'db.sqlite')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+app.config["SECRET_KEY"] = "9OLWxND4o83j4K4iuopO"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(db_dir, "db.sqlite")
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 
 db.init_app(app)
 
 login_manager = LoginManager()
-login_manager.login_view = 'auth.login'
+login_manager.login_view = "auth.login"
 login_manager.init_app(app)
 
 from app.user import User
