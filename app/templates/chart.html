@@ -1,0 +1,32 @@
+<!-- templates/chart.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Insider Week
+</h1>
+<h2 class="subtitle">
+  Настройки графика
+</h2>
+<form action="/show_chart" method="post">
+   <p><select required name="name">
+    <option disabled>Выберите актив</option>
+       {% for name in unique_names %}
+    <option value={{name}}>{{name}}</option>
+       {% endfor %}>{{ name }}
+   </select></p>
+    <p><select required name="chart_type">
+        <option disabled>Выберите тип графика</option>
+        <option label="Граффик истории цен" value=0></option>
+        <option label="Граффик сезонности" value=1></option>
+   </select></p>
+    <p>
+        <label>От:</label>
+        <input type="date" name="from_date" required>
+        <label>До:</label>
+        <input type="date" name="to_date" required>
+    </p>
+   <p><input type="submit" value="Выбрать"></p>
+    </form>
+{% endblock %}

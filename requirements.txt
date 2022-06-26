@@ -1,0 +1,6 @@
+dramatiq==1.12.3
+redis==4.1.4
+Flask==2.1.2
+Flask-SQLAlchemy==2.5.1
+Flask-Login==0.6.1
+bokeh==2.4.3

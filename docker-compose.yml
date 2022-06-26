@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  redis_week:
+    restart: unless-stopped
+    image: redis:5.0.7
+    container_name: redis_week
+    command: ["redis-server", "--port", "6379"]
+    network_mode: "host"
+
+  flask:
+    restart: unless-stopped
+    build: .
+    container_name: flask
+    command: ["sh", "-c", "python run.py"]
+    volumes:
+      - ./app/uploads:/insiderweek/app/uploads
+      - ./database:/insiderweek/database
+    network_mode: "host"
+
+  dramatiq_week:
+    restart: unless-stopped
+    build: .
+    container_name: dramatiq_week
+    command: ["sh", "-c", "dramatiq dramatiq_worker.dramatiq_worker"]
+    volumes:
+      - ./app/uploads:/insiderweek/app/uploads
+      - ./database:/insiderweek/database
+    depends_on:
+      - redis_week
+      - flask
+    network_mode: "host"

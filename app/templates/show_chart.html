@@ -1,0 +1,11 @@
+<!-- templates/show_chart.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>График истории цен</h1>
+    {{ the_div|safe }}
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.4.3.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.4.3.min.js"></script>
+    {{ the_script|safe }}
+{% endblock %}

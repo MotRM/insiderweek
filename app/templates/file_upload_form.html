@@ -1,0 +1,16 @@
+<!-- templates/file_upload_form.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Insider Week
+</h1>
+<h2 class="subtitle">
+  Загрузите файл
+</h2>
+<form action = "/success" method = "post" enctype="multipart/form-data">
+      <p><input type="file" name="file">
+         <input type = "submit" value="Upload">
+    </form>
+{% endblock %}
